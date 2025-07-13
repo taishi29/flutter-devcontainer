@@ -1,6 +1,6 @@
-# Flutter DevContainer 環境構築テンプレート
+# FlutterをDocker上に環境構築
 
-Flutterの構築環境が、WindowsとMacで異なると動かないみたいなので、Dockerコンテナ上で環境構築をし、VSCodeの拡張機能である、Dev Containerを用いてコンテナ内のファイルをVsCodeで編集できるようにする。
+Flutterの構築環境が、WindowsとMacで異なると動かないみたいなので、Dockerコンテナ上で環境構築をし、VSCodeの拡張機能である、Dev Containerを用いてコンテナ内のファイルをVsCodeで編集できるようにしました。
 
 ## 📚 参考記事
 
@@ -13,13 +13,13 @@ Flutterの構築環境が、WindowsとMacで異なると動かないみたいな
 ## 📁 プロジェクト構成
 
 ```
-.
-├── .devcontainer/
-│   ├── Dockerfile
-│   ├── devcontainer.json
-│   └── docker-compose.yml
-├── flutter_app/ （flutter createで生成）
-└── README.md
+.                                 # プロジェクトのルート
+├── .devcontainer/                # Dev Container関連設定を格納するディレクトリ
+│   ├── Dockerfile                # Flutter + Android SDKなどを含むDocker環境の定義
+│   ├── devcontainer.json         # VSCode Dev Containerの起動設定ファイル
+│   └── docker-compose.yml        # コンテナの起動設定
+├── flutter_devcontainer/         # Flutterプロジェクトのソースコード（（flutter createで生成）
+└── README.md                     # このプロジェクトの説明ファイル
 ```
 
 ## 🛠 使い方
@@ -34,13 +34,9 @@ Flutterの構築環境が、WindowsとMacで異なると動かないみたいな
 
 1. Android Studio でエミュレータを作成しておく
 2. VSCode で本プロジェクトを開く
-3. コマンドパレット `Ctrl + Shift + P` →\
+3. DockerDesktopを起動。(起動しないとコンテナ開けない)
+4. VSCodeのコマンドパレット `Ctrl + Shift + P` →\
    `Dev Containers: Reopen in Container` を実行
-
-```bash
-echo 'org.gradle.unsafe.watch-fs=false' >> android/gradle.properties
-```
-
 6. エミュレータとの接続（ホスト側でADBポートを開放しておく）
 
 ```bash
